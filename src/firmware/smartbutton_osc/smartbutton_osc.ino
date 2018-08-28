@@ -6,7 +6,7 @@
 WiFiUDP udp;
 ArduinoOSCWiFi osc;
 const char* ssid = "Bache";
-const char* pwd = "71073826";
+const char* pwd = "xxxxx";
 const IPAddress ip(192, 168, 10, 201);
 const IPAddress gateway(192, 168, 1, 1);
 const IPAddress subnet(255, 255, 255, 0);
