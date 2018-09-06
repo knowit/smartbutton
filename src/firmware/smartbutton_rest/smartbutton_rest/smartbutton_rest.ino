@@ -1,12 +1,14 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WebServer.h>
+#include <HTTPClient.h>
 #include <ESPmDNS.h>
 
 const char *ssid = "Bache";
-const char *password = "xxxxxx";
+const char *password = "xxxxxxxx";
 
 WebServer server(80);
+HTTPClient http;
 const int led = 4;
 
 void setup(void) {
@@ -39,6 +41,18 @@ void setup(void) {
   server.onNotFound(handleNotFound);
   server.begin();
   Serial.println("HTTP server started");
+
+
+  http.begin("192.168.10.167", 1880, "/helo");
+  int httpCode = http.GET();
+  if (httpCode > 0) {
+    Serial.print("HTTP OK ");
+    Serial.println(httpCode);
+  } else {
+    Serial.print("HTTP ERROR ");
+    Serial.println(httpCode);
+  }
+
 }
 
 void handleRoot() {
